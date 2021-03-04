@@ -1,1 +1,5 @@
 Notas para a minha aplicação Android.
+
+1. Criar ecrãs da aplicação Android
+2. Testar com utilizadores
+3. Implementar
