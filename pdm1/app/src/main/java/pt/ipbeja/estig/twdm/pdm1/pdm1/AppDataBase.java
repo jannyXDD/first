@@ -8,10 +8,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Chat.class}, version = 1)
+@Database(entities = {Chat.class, Message.class}, version = 1)
 public abstract class AppDataBase extends RoomDatabase {
 
     public abstract ChatDao getChatDao();
+    public abstract MessageDao getMessageDao();
 
     private static AppDataBase INSTANCE;
 
@@ -20,13 +21,14 @@ public abstract class AppDataBase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     AppDataBase.class,
                     "myAppDB")
-                    .allowMainThreadQueries()
+                    .allowMainThreadQueries() // n deve ser usado em PROD
                     .addCallback(new Callback() {
                         @Override
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {
                             super.onCreate(db);
-                            db.execSQL("INSERT INTO Chat (name, message) VALUES ('Osvaldo', 'Olá és fixe')");
-                            db.execSQL("INSERT INTO Chat (name, message) VALUES ('Inês', 'Sou burra')");
+                            db.execSQL("INSERT INTO Chat (name) VALUES ('Osvaldo')");
+                            db.execSQL("INSERT INTO Chat (name) VALUES ('Dja')");
+                            db.execSQL("INSERT INTO Message (chatId, content, date, fromBot) VALUES ('1', 'dasdsdsdsds', '2', false)");
                         }
                     })
                     .build();

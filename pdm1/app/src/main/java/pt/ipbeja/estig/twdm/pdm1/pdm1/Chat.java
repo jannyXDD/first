@@ -11,13 +11,10 @@ public class Chat {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
-    private String message;
 
-
-    public Chat(long id, String name, String message) {
+    public Chat(long id, String name) {
         this.id = id;
         this.name = name;
-        this.message = message;
     }
 
     public long getId() {
@@ -34,13 +31,5 @@ public class Chat {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessages(String message) {
-        this.message = message;
     }
 }
