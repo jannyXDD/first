@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Jogo do Galo</title>
+</head>
+<body class="text-center">
+    <header>
+        <h1>Jogo do Galo</h1>
+        <p id="jogador">É a vez do X.</p>
+    </header>
+    <main class="container">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+            </tr>
+            <tr>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+            </tr>
+            <tr>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+                <td width="100" height="100" onclick="jogar(this)"></td>
+            </tr>
+        </table>
+        <p><button onclick="location.reload()">Recomeçar</button></p>
+    </main>
+    <footer>
+        <p>Jogo realizado pela turma de TWDM de 2020/2022.</p>
+    </footer>
+    <script src="codigo.js"></script>
+</body>
+</html>
