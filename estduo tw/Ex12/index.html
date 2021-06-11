@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Javascript</title>
+    <style>
+        .text-center {
+            background-color: yellow;
+        } 
+    </style>
+</head>
+<body class="text-center">
+    <p id="par">Bom dia!</p>
+    <p id="idade"></p>
+    <p><img src="imagens/caracois.jpg" alt="Caracóis" width="50%" id="img1"></p>
+    <p>
+        <button onclick="hide()">Esconde Imagem</button>
+        <button onmouseover="show()">Mostra Imagem</button>
+        <button onclick="inteligente()">Mostra e Esconde Imagem</button>
+    </p>
+    <p id="juntar" onclick="juntarTexto()">Estou sozinho...</p>
+
+    <script>
+        // alterar conteúdo
+        document.getElementById("par").innerHTML = "Boa <strong>tarde</strong>!";
+        // alterar css
+        document.getElementById("par").style.color = "red";
+        
+        // declaração e inicialização de variável
+        var idade = 20;
+        idade = idade + 0.5;
+
+        // operadores - já sabem muito...
+
+        // output 1
+        document.getElementById("idade").innerText = idade;
+        // output 2
+        // window.alert("Sou um alert!");
+        // output 3
+        console.log("Estou na consola!");
+
+        // funções hide e show 
+        function hide() {
+            document.getElementById("img1").style.visibility = "hidden";
+        }
+
+        function show() {
+            document.getElementById("img1").style.visibility = "visible";
+        }
+
+        function inteligente() {
+            var elem = document.getElementById("img1");
+            if(elem.style.visibility == "hidden") {
+                elem.style.visibility = "visible";
+            }
+            else {
+                elem.style.visibility = "hidden";
+            }
+        }
+
+        function juntarTexto() {
+            // document.getElementById("juntar").innerHTML = document.getElementById("juntar").innerHTML + " Agora já não!";
+            document.getElementById("juntar").innerHTML += " Agora já não!";
+        }
+
+    </script>
+</body>
+</html>
