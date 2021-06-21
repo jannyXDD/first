@@ -4,10 +4,10 @@ var elemento = document.getElementById("slide");
 var idTemporizador = setInterval(imagemSeguinte,5000);
 
 /* chamar de 5s em 5s */
-function imagemSeguinte() {
-    i = (i + 1) % imagens.length;
-    elemento.src = "imagens/" + imagens[i];
-}
+    function imagemSeguinte() {
+        i = (i + 1) % imagens.length;
+        elemento.src = "imagens/" + imagens[i];
+    }
 
 function pararSlide() {
     clearInterval(idTemporizador);

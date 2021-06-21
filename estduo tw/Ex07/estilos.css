@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+section div {
+    float: left;
+    /*
+    margin-left: 5px;
+    margin-right: 5px;
+    */
+    text-align: center;
+    width: 33.33%;
+}
+
+/* centrar elementos de texto */
+h1 {
+    text-align: center;
+}
+
+/* centrar elementos bloco */
+#s1 {
+    margin: auto;
+    /* background-color: orange; */
+    overflow: auto;
+    width: 70%;
+}
+
+#s2 {
+    clear: left;
+    margin: auto;
+    /* background-color: red; */
+    width: 70%;
+    text-align: center;
+}
+
+section img {
+    display: block;
+    margin: auto;
+}
+
+section img:hover {
+    opacity: 0.5;
+}
+
+#s2 p {
+    /* display: none; */
+    visibility: hidden;
+}
+
+#s2 img:hover + p {
+    /* display: block; */
+    visibility: visible;
+}

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto;
+}
+
+header {
+    background-color:skyblue;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+nav {
+    background-color: orange;
+    color: white;
+    float: left;
+    width: 20%;
+    padding: 100px;
+    border-radius: 10px;
+    height: 300px;
+}
+
+section {
+    background-color: gray;
+    color: white;
+    float: left;
+    width: 80%;
+    padding: 100px;
+    border-radius: 10px;
+    height: 300px;
+}
+
+footer {
+    background-color: greenyellow;
+    color: white;
+    clear: left;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+}

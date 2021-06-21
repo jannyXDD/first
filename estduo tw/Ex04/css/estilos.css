@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+}
+
+nav#vert, section, aside {
+    border: 2px solid black;
+}
+
+#principal {
+    width: 75%;
+    background-color: orange;
+    /* centrar bloco */
+    margin: auto;
+}
+
+img {
+    width: 100%;
+}
+
+nav#vert {
+    float: left;
+    width: 10%;
+}
+
+section {
+    float: left;
+    width: 80%;
+}
+
+aside {
+    float: left;
+    width: 10%;
+}
+
+footer {
+    clear: left;
+}

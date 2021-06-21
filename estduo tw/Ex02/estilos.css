@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/*
+    Sintaxe das regras CSS
+    seletor { propriedade: valor; propriedade: valor; ... }
+*/
+
+body
+{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: black;
+    color: white;
+}
+
+footer
+{
+    text-shadow: 3px 3px gray; font-size: 24px;
+}
+
+/* cor do link */
+#links a:link
+{
+    color: gray;
+}
+
+/* cor do link visitado */
+#links a:visited
+{
+    color: white;
+}
+
+/* cor do link quando passamos o curosr por cima */
+#links a:hover
+{
+    color: orangered;
+}
+
+/* cor do link quando clicamos */
+#links a:active
+{
+    color: yellow;
+}
+
+/* refere um elemento com o id links */
+#links
+{
+    background-color: gray;
+}
+
+/* refere vários elemntos pertencentes à classe arial */
+.arial
+{
+    font-family: Arial, Helvetica, sans-serif;
+}

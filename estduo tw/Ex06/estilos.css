@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body, h1, h2, p {
+    margin: 0;
+}
+
+header, section, footer {
+    border: 2px solid black;
+}
+
+header {
+    background-color: aquamarine;
+    height: 10%;
+}
+
+section {
+    background-color: yellow;
+    height: 40%;
+    /* padding: 55px 10px 20px 170px; */
+    /* padding: 20px 50px; */
+    padding: 25px;
+}
+
+footer {
+    background-color: tomato;
+    height: 10%;
+}
+
+#bloco {
+    background-color: brown;
+}
+
+section p span {
+    background-color: cornflowerblue;
+    display: block;
+}
