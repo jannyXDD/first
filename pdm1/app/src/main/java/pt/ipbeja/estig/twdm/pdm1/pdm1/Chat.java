@@ -2,6 +2,7 @@ package pt.ipbeja.estig.twdm.pdm1.pdm1;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.List;
@@ -14,6 +15,11 @@ public class Chat {
 
     public Chat(long id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    @Ignore
+    public Chat(String name) {
         this.name = name;
     }
 

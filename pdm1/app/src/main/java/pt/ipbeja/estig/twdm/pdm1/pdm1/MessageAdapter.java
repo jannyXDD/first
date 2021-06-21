@@ -43,7 +43,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         return this.messageList.size();
     }
 
-
+    public void updateList(List<Message> newList) {
+        newList = this.messageList;
+    }
 
 
     public class MessageViewHolder extends RecyclerView.ViewHolder {

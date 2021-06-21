@@ -85,10 +85,12 @@ public class DetailsActivity extends AppCompatActivity {
                             Message newMessage = new Message(chat.getId(), message, 2, false);
                             AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessage);
                             List<Message> newList = messageDao.getAllForChat(DetailsActivity.this.chat.getId());
+                            DetailsActivity.this.adapter.updateList(newList);
+                            finish();
+                            startActivity(getIntent());
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //DetailsActivity.this.adapter.updateList(newList);
                                     Toast.makeText(getApplicationContext(),"Mensagem enviada com Sucesso", Toast.LENGTH_SHORT).show();
                                 }
                             });
