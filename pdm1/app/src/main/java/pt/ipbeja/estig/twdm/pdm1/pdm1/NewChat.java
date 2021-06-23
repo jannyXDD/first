@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Date;
+
 public class NewChat extends AppCompatActivity {
 
     private TextView name;
@@ -23,10 +25,10 @@ public class NewChat extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Chat chat = new Chat(name.getText() + "");
+                Date currentDate = new Date();
+                Chat chat = new Chat(name.getText() + "", currentDate.getTime(), "Não tem mensagens com este chat");
                 AppDataBase.getInstance(NewChat.this).getChatDao().add(chat);
                 startActivity(new Intent (NewChat.this, MainActivity.class));
-
             }
         });
 

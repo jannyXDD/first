@@ -26,9 +26,9 @@ public abstract class AppDataBase extends RoomDatabase {
                         @Override
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {
                             super.onCreate(db);
-                            db.execSQL("INSERT INTO Chat (name) VALUES ('Osvaldo')");
-                            db.execSQL("INSERT INTO Chat (name) VALUES ('Dja')");
-                            db.execSQL("INSERT INTO Message (chatId, content, date, fromBot) VALUES ('1', 'dasdsdsdsds', '2', false)");
+                            //db.execSQL("INSERT INTO Chat (name, createdTime) VALUES ('Osvaldo', 222)");
+                            //db.execSQL("INSERT INTO Chat (name, createdTime) VALUES ('Dja', 222)");
+                            //db.execSQL("INSERT INTO Message (chatId, content, date, fromBot) VALUES ('1', 'dasdsdsdsds', '2', false)");
                         }
                     })
                     .build();

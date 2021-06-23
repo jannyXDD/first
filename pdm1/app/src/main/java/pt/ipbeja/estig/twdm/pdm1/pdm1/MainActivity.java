@@ -8,7 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    private List<Chat> chatList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,4 +29,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewChat.class);
         startActivity(intent);
     }
+
+
 }
