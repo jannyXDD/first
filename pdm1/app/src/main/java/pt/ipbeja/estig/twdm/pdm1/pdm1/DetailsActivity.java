@@ -93,6 +93,7 @@ public class DetailsActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            AppDataBase dataBase = AppDataBase.getInstance(getApplicationContext());
 
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -102,8 +103,13 @@ public class DetailsActivity extends AppCompatActivity {
                                     AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessage);
                                     List<Message> newList = messageDao.getAllForChat(DetailsActivity.this.chat.getId());
                                     DetailsActivity.this.adapter.updateList(newList);
-                                    textViewMessage.setText("");
                                     Toast.makeText(getApplicationContext(),"Mensagem enviada com Sucesso", Toast.LENGTH_SHORT).show();
+                                    chat.setLastMessage(textViewMessage.getText() + "");
+                                    Date currentDate = new Date();
+                                    chat.setLastMessageTime(currentDate.getTime());
+                                    dataBase.getInstance(DetailsActivity.this).getChatDao().update(chat);
+                                    textViewMessage.setText("");
+
                                 }
                             });
                         }

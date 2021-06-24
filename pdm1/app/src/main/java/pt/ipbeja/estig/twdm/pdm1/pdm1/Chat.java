@@ -14,19 +14,30 @@ public class Chat {
     private String name;
     private long createdTime;
     private String lastMessage;
+    private long lastMessageTime;
 
-    public Chat(long id, String name, long createdTime, String lastMessage) {
+    public Chat(long id, String name, long createdTime, String lastMessage, long lastMessageTime) {
         this.id = id;
         this.name = name;
         this.createdTime = createdTime;
         this.lastMessage = lastMessage;
+        this.lastMessageTime = lastMessageTime;
     }
 
     @Ignore
-    public Chat(String name, long createdTime, String lastMessage) {
+    public Chat(String name, long createdTime, String lastMessage, long lastMessageTime) {
         this.name = name;
         this.createdTime = createdTime;
         this.lastMessage = lastMessage;
+        this.lastMessageTime = lastMessageTime;
+    }
+
+    public long getLastMessageTime() {
+        return lastMessageTime;
+    }
+
+    public void setLastMessageTime(long lastMessageTime) {
+        this.lastMessageTime = lastMessageTime;
     }
 
     public long getCreatedTime() {

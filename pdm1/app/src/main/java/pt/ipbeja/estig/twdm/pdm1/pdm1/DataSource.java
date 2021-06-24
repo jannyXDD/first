@@ -17,6 +17,10 @@ public class DataSource {
         return AppDataBase.getInstance(context).getChatDao().getAll();
     }
 
+    public static List<Chat> getChatListOrdered(Context context) {
+        return AppDataBase.getInstance(context).getChatDao().getAllOrderedByLastMessage();
+    }
+
 
     public static Chat getChat(Context context, long id) {
         return AppDataBase.getInstance(context).getChatDao().getById(id);

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder>{
@@ -25,8 +26,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     private List<Chat> chatList;
     private Context context;
 
-    public ChatAdapter(Context context, List<Chat> chatList){
-        this.chatList = chatList;
+    public ChatAdapter(Context context){
+        this.chatList = new ArrayList<>();
         this.context = context;
     }
 
@@ -86,6 +87,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public int getItemCount() {
         return this.chatList.size();
+    }
+
+    public void updateList(List<Chat> newList) {
+        this.chatList = newList;
+        notifyDataSetChanged();
     }
 
 

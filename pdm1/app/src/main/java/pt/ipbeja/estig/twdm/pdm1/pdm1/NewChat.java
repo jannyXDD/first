@@ -26,9 +26,9 @@ public class NewChat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Date currentDate = new Date();
-                Chat chat = new Chat(name.getText() + "", currentDate.getTime(), "Não tem mensagens com este chat");
+                Chat chat = new Chat(name.getText() + "", currentDate.getTime(), "Não tem mensagens com este chat", currentDate.getTime());
                 AppDataBase.getInstance(NewChat.this).getChatDao().add(chat);
-                startActivity(new Intent (NewChat.this, MainActivity.class));
+                finish();
             }
         });
 

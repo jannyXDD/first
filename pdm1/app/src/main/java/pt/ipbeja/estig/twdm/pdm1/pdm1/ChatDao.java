@@ -14,6 +14,9 @@ public interface ChatDao {
     @Query("SELECT * FROM Chat")
     List<Chat> getAll();
 
+    @Query("SELECT * FROM Chat ORDER BY lastMessageTime DESC")
+    List<Chat> getAllOrderedByLastMessage();
+
     @Query("SELECT * FROM Chat WHERE id = :id")
     Chat getById(long id);
 

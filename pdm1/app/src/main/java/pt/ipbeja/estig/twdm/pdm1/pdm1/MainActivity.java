@@ -11,18 +11,17 @@ import android.view.View;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private List<Chat> chatList;
+
+    private ChatAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        ChatAdapter adapter = new ChatAdapter(this, DataSource.getChatList(this));
-        recyclerView.setAdapter(adapter);
+        this.adapter = new ChatAdapter(this);
+        recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
     }
 
     public void goToNewChat(View view) {
@@ -30,5 +29,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        this.adapter.updateList(DataSource.getChatListOrdered(this));
+    }
 }
