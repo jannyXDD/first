@@ -19,6 +19,9 @@ public interface MessageDao {
     @Query("SELECT * FROM Message WHERE id = :id")
     Message getById(long id);
 
+    @Query("SELECT * FROM Message WHERE content LIKE '%' || :search || '%' AND chatId = :chatId")
+    List<Message> getMessageBySearch(long chatId, String search);
+
     @Insert
     void add(Message message);
 
@@ -30,4 +33,5 @@ public interface MessageDao {
 
     @Update
     void update(Message message);
+
 }

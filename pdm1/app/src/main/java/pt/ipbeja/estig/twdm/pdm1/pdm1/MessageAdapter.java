@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BaseViewHolder> {
     private static final String TAG = "MessageAdapter";
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd || HH:mm");
 
@@ -28,17 +28,33 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         this.context = context;
     }
 
+    private static final int TYPE_FROMBOT = 1;
+    private static final int TYPE_NOT_FROMBOT = 0;
+
+    @Override
+    public int getItemViewType(int position) {
+        Message message = messageList.get(position);
+        if (message.isFromBot()) {
+            return TYPE_FROMBOT;
+        } else {
+            return TYPE_NOT_FROMBOT;
+        }
+    }
 
     @NonNull
     @Override
-    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i(TAG, "onCreateViewHolder");
-        View view = LayoutInflater.from(this.context).inflate(R.layout.message, parent, false);
-        return new MessageViewHolder(view);
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == TYPE_FROMBOT){
+            View view = LayoutInflater.from(this.context).inflate(R.layout.message_from_bot, parent, false);
+            return new ViewHolderFromBot(view);
+        } else{
+            View view = LayoutInflater.from(this.context).inflate(R.layout.message, parent, false);
+            return new ViewHolderNotFromBot(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         Message message = this.messageList.get(position);
         holder.getTextViewMessage().setText(message.getContent());
         holder.getTextViewDate().setText(sdf.format(message.getDate()));
@@ -61,14 +77,24 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         this.notifyDataSetChanged();
     }
 
+    public class ViewHolderNotFromBot extends BaseViewHolder {
+        public ViewHolderNotFromBot(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
 
+    public class ViewHolderFromBot extends BaseViewHolder {
+        public ViewHolderFromBot(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
 
-    public class MessageViewHolder extends RecyclerView.ViewHolder {
+    public class BaseViewHolder extends RecyclerView.ViewHolder {
         private final View parentLayout;
         private TextView textViewMessage;
         private TextView textViewDate;
 
-        public MessageViewHolder(@NonNull View itemView) {
+        public BaseViewHolder(@NonNull View itemView) {
             super(itemView);
             this.textViewMessage = itemView.findViewById(R.id.textViewMessage);
             this.textViewDate = itemView.findViewById(R.id.textViewDate);

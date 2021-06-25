@@ -1,5 +1,6 @@
 package pt.ipbeja.estig.twdm.pdm1.pdm1;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,7 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telecom.Call;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,7 +38,6 @@ public class DetailsActivity extends AppCompatActivity {
     private static final String TAG = "DetailsActivity";
 
     private MessageAdapter adapter;
-    private ImageView imageViewCover;
     private TextView textViewName;
     private TextView textViewMessage;
     private TextView textViewChat;
@@ -42,6 +46,9 @@ public class DetailsActivity extends AppCompatActivity {
     private Chat chat;
     private Button button;
     private Message message;
+    private String messageString;
+    private TextView textViewCreatedTime;
+    private String createdTimeString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,12 @@ public class DetailsActivity extends AppCompatActivity {
         this.textViewDate = findViewById(R.id.textViewDate);
         this.textViewMessage = findViewById(R.id.editTextType);
         this.button = findViewById(R.id.button);
+        this.textViewCreatedTime = findViewById(R.id.textView5);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -61,6 +73,7 @@ public class DetailsActivity extends AppCompatActivity {
                 Log.e(TAG, "Invalid id found!");
                 finish();
             }
+
             this.chat = DataSource.getChat(this, id);
             this.textViewName.setText(chat.getName());
 
@@ -72,6 +85,8 @@ public class DetailsActivity extends AppCompatActivity {
             finish();
         }
 
+        createdTimeString = sdf.format(chat.getCreatedTime());
+        this.textViewCreatedTime.setText(createdTimeString);
         RecyclerView recyclerView = findViewById(R.id.recyclerView2);
         adapter = new MessageAdapter(this, DataSource.getMessageListForChat(this, this.chat.getId()));
         recyclerView.setAdapter(adapter);
@@ -94,19 +109,65 @@ public class DetailsActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             AppDataBase dataBase = AppDataBase.getInstance(getApplicationContext());
-
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     Date newDate = new Date();
                                     Message newMessage = new Message(chat.getId(), textViewMessage.getText() + "" ,newDate.getTime() , false);
                                     AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessage);
-                                    List<Message> newList = messageDao.getAllForChat(DetailsActivity.this.chat.getId());
-                                    DetailsActivity.this.adapter.updateList(newList);
-                                    Toast.makeText(getApplicationContext(),"Mensagem enviada com Sucesso", Toast.LENGTH_SHORT).show();
                                     chat.setLastMessage(textViewMessage.getText() + "");
+                                    messageString = textViewMessage.getText() + "";
                                     Date currentDate = new Date();
                                     chat.setLastMessageTime(currentDate.getTime());
+                                    if(messageString.contains("ola")){
+                                        Message newMessageBot = new Message(chat.getId(), "olá! tudo bem?", newDate.getTime() , true);
+                                        AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessageBot);
+                                        chat.setLastMessage(newMessageBot.getContent() + "");
+                                    }
+                                    else{
+                                        chat.setLastMessage(textViewMessage.getText() + "");
+                                        chat.setLastMessageTime(currentDate.getTime());
+                                    }
+                                    if(messageString.contains("adeus")){
+                                        Message newMessageBot = new Message(chat.getId(), "adeus!!", newDate.getTime() , true);
+                                        AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessageBot);
+                                        chat.setLastMessage(newMessageBot.getContent() + "");
+                                    }
+                                    else{
+                                        chat.setLastMessage(textViewMessage.getText() + "");
+                                        chat.setLastMessageTime(currentDate.getTime());
+                                    }
+                                    if(messageString.contains("tudo bem?")){
+                                        Message newMessageBot = new Message(chat.getId(), "sim! e contigo?", newDate.getTime() , true);
+                                        AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessageBot);
+                                        chat.setLastMessage(newMessageBot.getContent() + "");
+                                    }
+                                    else{
+                                        chat.setLastMessage(textViewMessage.getText() + "");
+                                        chat.setLastMessageTime(currentDate.getTime());
+                                    }
+                                    if(messageString.contains("amote")){
+                                        Message newMessageBot = new Message(chat.getId(), "amote mais <3", newDate.getTime() , true);
+                                        AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessageBot);
+                                        chat.setLastMessage(newMessageBot.getContent() + "");
+                                    }
+                                    else{
+                                        chat.setLastMessage(textViewMessage.getText() + "");
+                                        chat.setLastMessageTime(currentDate.getTime());
+                                    }
+
+                                    if(messageString.contains("como te chamas")){
+                                        Message newMessageBot = new Message(chat.getId(), "joão daniel", newDate.getTime() , true);
+                                        AppDataBase.getInstance(DetailsActivity.this).getMessageDao().add(newMessageBot);
+                                        chat.setLastMessage(newMessageBot.getContent() + "");
+                                    }
+                                    else{
+                                        chat.setLastMessage(textViewMessage.getText() + "");
+                                        chat.setLastMessageTime(currentDate.getTime());
+                                    }
+
+                                    List<Message> newList = messageDao.getAllForChat(DetailsActivity.this.chat.getId());
+                                    DetailsActivity.this.adapter.updateList(newList);
                                     dataBase.getInstance(DetailsActivity.this).getChatDao().update(chat);
                                     textViewMessage.setText("");
 
@@ -118,5 +179,23 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
+
+
+
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+
 }

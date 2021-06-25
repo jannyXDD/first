@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     private ChatAdapter adapter;
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToNewChat(View view) {
-        Intent intent = new Intent(this, NewChat.class);
+        Intent intent = new Intent(this, NewChatActivity.class);
         startActivity(intent);
     }
 
